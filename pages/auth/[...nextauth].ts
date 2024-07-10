@@ -1,10 +1,8 @@
-const bcrypt = require('bcrypt')
+import bcrypt from "bcrypt";
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import prisma from '../../libs/prismadb'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import EmailProvider from 'next-auth/providers/email'
-
+import prisma from "@/libs/prismadb";
 
 export default NextAuth({
     adapter: PrismaAdapter(prisma),

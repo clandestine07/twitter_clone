@@ -1,6 +1,6 @@
 import { NextApiRequest } from "next";
 import { getSession } from "next-auth/react";
-const prisma = require ('@/libs/prismadb')
+import prisma from '@/libs/prismadb'
 const serverAuth = async (req: NextApiRequest) => {
     const session =  await getSession({req})
 
@@ -8,7 +8,7 @@ const serverAuth = async (req: NextApiRequest) => {
         throw new Error('Unauthorized')
     }
 
-    const currentUser = await prisma.findUnique({
+    const currentUser = await prisma.user.findUnique({
         where:{
             email: session.user.email
         }

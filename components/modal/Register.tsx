@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
 
 const Register = () => {
+    
     const useLoginModal = LoginModal()
     const useRegisterModal = RegisterModal()
     const [email, setEmail] = useState('')
@@ -28,7 +29,6 @@ const Register = () => {
     const onSubmit = useCallback(async () => {
         try{
             setLoading(true)
-            
             await axios.post('/api/register', {
                 email,
                 username,
@@ -37,13 +37,13 @@ const Register = () => {
             })
 
             toast.success('Account Created')
-
+            
             signIn('credentials', {
                 email,
                 password
             })
-
             useRegisterModal.onClose();
+            
         }catch(err){
             console.log(err);
             toast.error('Something Went wrong')

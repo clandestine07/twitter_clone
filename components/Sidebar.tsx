@@ -4,7 +4,10 @@ import { FaUser } from "react-icons/fa6"
 import SidebarLogo from "./SidebarLogo"
 import SidebarItem from "./SidebarItem"
 import SidebarTweetBtn from './SidebarTweetBtn'
+import useCurrentUser from "@/hooks/useCurrentUser"
+import { signOut } from "next-auth/react"
 const Sidebar = () => {
+    const {data: currentUser} = useCurrentUser()
     const icons = [
         {
             label:'Home',
@@ -36,7 +39,10 @@ const Sidebar = () => {
                         icon={item.icon}
                         />
                     ))}
-                    <SidebarItem onclick={()=> {}} icon={CiLogout} label='Logout' />
+                    {currentUser && (
+                        <SidebarItem onclick={() => signOut()} icon={CiLogout} label='Logout' />
+                    )}
+                    
                     <SidebarTweetBtn />
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-const bcrypt = require('bcrypt')
-const prisma = require('@/libs/prismadb')
+import bcrypt from "bcrypt";
+import prisma from "@/libs/prismadb";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
     if(req.method !== 'POST'){
@@ -21,6 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
         return res.status(200).json(user)
     } catch(error){
+        console.log(error)
         return res.status(400).end()
     }
 }
